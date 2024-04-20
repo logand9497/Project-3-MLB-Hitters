@@ -6,67 +6,61 @@
 #include <sstream>
 using namespace std;
 
-vector<pair<string, double>> readCSV(string fileNAME){
-        string fileN = fileNAME;
-        ifstream file(fileN); 
-        if(!file.is_open()){
+void readCSV(vector<pair<string, double>>& rVal, string fileNAME){ // reading file
+        string fileN = fileNAME; // file name
+        ifstream file(fileN); // opening file
+        if(!file.is_open()){ // checking if file is open
             cout << "Error opening file!" << endl;
         }
         string line;
-        getline(file,line);
-        int i = 1;
-        vector<pair<string, double>> rVal;
-        while(getline(file, line)){ 
+        getline(file,line); // deleting heading
+         // data structure to read stuff into
+        while(getline(file, line)){  // reading through csv file
             stringstream ss(line);
             string name;
             getline(ss, name, ',');
             string O;
             getline(ss, O);
             double val = stod(O); 
-            rVal.emplace_back(name, val);     
-        }   
-
-        return rVal;    
-
+            rVal.emplace_back(name, val); // adding data
+        }
     }
 
 
-void merge(vector<pair<string,double>>& arr, int left, int mid, int right){
-    int n1 = mid - left + 1;
-    int n2 = right - mid;
+void merge(vector<pair<string,double>>& rVals, int start, int mid, int end){
+    int n1 = mid - start + 1; // lengths of two smaller vectors
+    int n2 = end - mid;
 
-    // Create temporary arrays
-    std::vector<pair<string, double>> L(n1), R(n2);
+    std::vector<pair<string, double>> left; // creating copies
+    std::vector<pair<string, double>> right;
 
-    // Copy data to temporary arrays L[] and R[]
-    for (int i = 0; i < n1; i++)
-        L[i] = arr[left + i];
-    for (int j = 0; j < n2; j++)
-        R[j] = arr[mid + 1 + j];
+    for (int i = 0; i < n1; i++){ // adding data to copies
+        left.push_back(rVals[start + i]);
+    }
+    for (int j = 0; j < n2; j++){
+        right.push_back(rVals[mid + 1 + j]);
+    }
 
-    // Merge the temporary arrays back into arr[left..right]
-    int i = 0, j = 0, k = left;
+    int i = 0; // adding data back to the main vector
+    int j = 0; 
+    int k = start;
     while (i < n1 && j < n2) {
-        if (L[i].second <= R[j].second) {
-            arr[k] = L[i];
+        if (left[i].second <= right[j].second) {
+            rVals[k] = left[i];
             i++;
         } else {
-            arr[k] = R[j];
+            rVals[k] = right[j];
             j++;
         }
         k++;
     }
-
-    // Copy the remaining elements of L[], if any
     while (i < n1) {
-        arr[k] = L[i];
+        rVals[k] = left[i];
         i++;
         k++;
     }
-
-    // Copy the remaining elements of R[], if any
     while (j < n2) {
-        arr[k] = R[j];
+        rVals[k] = right[j];
         j++;
         k++;
     }
@@ -75,18 +69,37 @@ void merge(vector<pair<string,double>>& arr, int left, int mid, int right){
 
 void mergeSort(vector<pair<string,double>> &rVals, int start, int end){
     if (start < end){
-        int middle = (start + end) / 2;
+        int middle = (start + end) / 2; // splitting vector and recursively calling mergeSort
 
         mergeSort(rVals, middle + 1, end);
         mergeSort(rVals, start, middle);
 
-        merge(rVals,start,middle,end);
+        merge(rVals,start,middle,end); // combining vectors back together
 
     }
 }
 
 void printData(const vector<pair<string, double>>& rVal) {
-    for (const auto& pair : rVal){
+    for (const auto& pair : rVal){ // going through new vector and printing values
         cout << pair.first << ": " << pair.second << endl;
     }
+}
+
+
+vector<pair<string,double>> seeOPS(const vector<pair<string, double>>& given, double seeVal) {
+    vector<pair<string,double>> rVal; // creating new value
+    bool check = false; // exiting if pass all of the same OPS
+
+    for (int i = 0; i < rVal.size(); i++){ // iterating until same OPS
+        if (seeVal == given[i].second){
+            rVal.push_back(given[i]); // adding to the return vector
+            check = true;
+        }
+        else {
+            if (check){
+                break;
+            }
+        }        
+    }
+    return rVal;
 }
