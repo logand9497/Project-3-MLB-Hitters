@@ -44,8 +44,8 @@ void merge(vector<pair<string,double>>& rVals, int start, int mid, int end){
     int i = 0; // adding data back to the main vector
     int j = 0; 
     int k = start;
-    while (i < n1 && j < n2) {
-        if (left[i].second <= right[j].second) {
+    while (i < n1 && j < n2) { // while values left in either vector
+        if (left[i].second <= right[j].second) { // comparing and adding the smaller one
             rVals[k] = left[i];
             i++;
         } else {
@@ -54,12 +54,12 @@ void merge(vector<pair<string,double>>& rVals, int start, int mid, int end){
         }
         k++;
     }
-    while (i < n1) {
+    while (i < n1) { // if values only left in left vector
         rVals[k] = left[i];
         i++;
         k++;
     }
-    while (j < n2) {
+    while (j < n2) { // if values only left in right vector
         rVals[k] = right[j];
         j++;
         k++;
