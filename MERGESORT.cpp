@@ -79,11 +79,11 @@ void mergeSort(vector<pair<string,double>> &rVals, int start, int end){
     }
 }
 
-void printData(const vector<pair<string, double>>& rVal) {
+/* void printData(const vector<pair<string, double>>& rVal) {
     for (const auto& pair : rVal){ // going through new vector and printing values
         cout << pair.first << ": " << pair.second << endl;
     }
-}
+} */
 
 
 vector<pair<string,double>> seeOPS(const vector<pair<string, double>>& given, double seeVal) {
