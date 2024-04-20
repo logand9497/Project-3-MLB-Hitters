@@ -6,7 +6,7 @@
 #include <sstream>
 using namespace std;
 
-void readCSV(vector<pair<string, double>>& rVal, string fileNAME){ // reading file
+/* void readCSV(vector<pair<string, double>>& rVal, string fileNAME){ // reading file
         string fileN = fileNAME; // file name
         ifstream file(fileN); // opening file
         if(!file.is_open()){ // checking if file is open
@@ -24,7 +24,7 @@ void readCSV(vector<pair<string, double>>& rVal, string fileNAME){ // reading fi
             double val = stod(O); 
             rVal.emplace_back(name, val); // adding data
         }
-    }
+    } */
 
 
 void merge(vector<pair<string,double>>& rVals, int start, int mid, int end){
