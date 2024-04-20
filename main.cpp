@@ -3,7 +3,7 @@
 #include <vector>
 #include <algorithm>
 #include "quicksort.h"
-#include "MERGESORT.cpp"
+#include "MERGESORT.h"
 using namespace std;
 
 
