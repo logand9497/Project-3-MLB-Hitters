@@ -14,5 +14,8 @@ int partition(std::vector<std::pair<std::string, double>>& data, int low, int hi
 // Quick sort algorithm to sort vector of pairs by OPS
 void quickSort(std::vector<std::pair<std::string, double>>& data, int low, int high);
 
+// Quick sort iterative algorithm to sort vector of pairs by OPS
+void quickSortIterative(std::vector<std::pair<std::string, double>>& data, int low, int high);
+
 // Function to print vector of pairs
 void printData(const std::vector<std::pair<std::string, double>>& data);
