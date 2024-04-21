@@ -61,6 +61,24 @@ void quickSort(std::vector<std::pair<std::string, double>>& data, int low, int h
     }
 }
 
+// Iterative quick sort algorithm to sort the vector of pairs by OPS
+void quickSortIterative(std::vector<std::pair<std::string, double>>& data, int low, int high) {
+    std::vector<std::pair<int, int>> stack;
+    stack.push_back(std::make_pair(low, high));
+
+    while (!stack.empty()) {
+        std::pair<int, int> range = stack.back();
+        stack.pop_back();
+        int left = range.first;
+        int right = range.second;
+        if (left < right) {
+            int pivot = partition(data, left, right);
+            stack.push_back(std::make_pair(left, pivot - 1));
+            stack.push_back(std::make_pair(pivot + 1, right));
+        }
+    }
+}
+
 // Function to print the vector of pairs
 void printData(const std::vector<std::pair<std::string, double>>& data) {
     for (const auto& pair : data) {
