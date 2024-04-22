@@ -7,4 +7,4 @@ The purpose of this program is to use a large dataset of around 115,000 data poi
 The program uses this data to allow a user to search for a player and year the want their OPS data for and also shows the closest 10 other player scores.
 
 <h2> How to Use </h2>
-To use this program, simply follow prompts for input. The player you would like to search for should be entered as FIRSTNAME LASTNAME YEAR.
+To use this program, simply follow prompts for input. The player you would like to search for should be entered as FIRSTNAME LASTNAME YEAR. Ensure that all files from this repository are included.
