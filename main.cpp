@@ -57,7 +57,7 @@ int main() {
             quit = true;
         }
         else if (input1 == 'Y') {
-            // prompt for players to compare
+            // prompt for player to search and compare
             cout << "Please enter a player name and the year you would like to see their score for." << endl;
             cout << "Enter in the format: First Last Year" << endl;
             string player;
@@ -102,6 +102,7 @@ int main() {
                     cout << "\t" << it->first << ", " << it->second << " OPS" << endl;
                 }
             }
+            // if player not found in data set or wrong input
             else {
                 cout << "Player not found using Merge Sort." << endl;
             }
@@ -120,6 +121,7 @@ int main() {
                     cout << "\t" << it->first << ", " << it->second << " OPS" << endl;
                 }
             }
+            // if player not found in data set or wrong input
             else {
                 cout << "Player not found using Quick Sort." << endl;
             }
